@@ -3,9 +3,40 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
+    <title>Queueing System</title>
+    <link rel="stylesheet" href="index.css">
 </head>
+
+<!--Vue CDN (loads vue)-->
+    <script src="https://unpkg.com/vue@3/dist/vue.global.js"></script>
+
 <body>
-    
+    <div id="app">
+        <h1> {{queueName}} </h1>
+        <script>
+//vue
+const { createApp } = Vue;
+createApp({
+    data() {
+        return {
+            queueName: "AK Dialysis Center"
+        }
+    }
+}).mount('#app');
+        </script>
+
+<div class = "navLinks">
+<ul>
+    <li><a href="#">Queue Display</a></li>
+</ul>
+<ul>
+    <li><a href="#">Encode</a></li>
+</ul>
+<ul>
+    <li><a href="#">User Management</a></li>
+</ul>
+    </div>
 </body>
+
+    
 </html>

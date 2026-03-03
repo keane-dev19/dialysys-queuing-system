@@ -1,0 +1,25 @@
+#app h1 {
+    font: 36px Arial, sans-serif;
+    margin: 20px 0 20px 0;
+}
+
+.navLinks {
+    position: relative;
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: center;
+    gap: 100px;
+    font: 18px Arial, sans-serif;
+    padding-bottom: 20px;
+}
+
+.navLinks ul {
+    list-style: none;
+    margin: 40px 0 0 0;
+    padding: 0px;
+}
+
+.navLinks a {
+    text-decoration: none;
+}
