@@ -4,16 +4,69 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Queueing System</title>
-    <link rel="stylesheet" href="index.css">
-</head>
-
-<!--Vue CDN (loads vue)-->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-sRIl4kxILFvY47J16cr9ZwB07vP4J8+LH7qKQnuqkuIAvNWLzeN8tE5YBujZqJLB" crossorigin="anonymous">
     <script src="https://unpkg.com/vue@3/dist/vue.global.js"></script>
+    <style>
+        #app h1 {
+            font-size: 2rem;
+            font-weight: 400;
+            margin-left: 2rem;
+            padding-top: 2rem;
+        }
+        .navLinks {
+            font-size: small;
+        }
+        .navLinks .nav-link {
+            background-color: #0077BE;
+            color: #fcf9f9;
+            border-radius: 5px;
+            padding: 0.5rem 1rem;
+        }
+        .left-content, .right-content {
+            background-color: #D9D9D9;
+            border-radius: 5px;
+            font-weight: 300;
+        }
+        .left-content h2, .right-content h2 {
+            font-size: 1.5rem;
+            margin-top: 0;
+            
+        }
+    </style>
+</head>
 
 <body>
     <div id="app">
+
         <h1> {{queueName}} </h1>
-        <script>
+
+    <div class="navLinks">
+        <ul class="nav nav-pills justify-content-center">
+            <li class="nav-item"><a class="nav-link mx-3" href="#">Queue Display</a></li>
+            <li class="nav-item"><a class="nav-link mx-3" href="#">Encode</a></li>
+            <li class="nav-item"><a class="nav-link mx-3" href="#">User Management</a></li>
+        </ul>
+    </div>
+
+    <div class="container-fluid min-vh-100 d-flex flex-column">
+
+        <div class="row flex-grow-1">
+
+            <div class="col-md-7 p-4">
+                <div class="left-content h-100 p-4">
+                    <h2>Left Container</h2>
+                </div>
+            </div>
+
+            <div class="col-md-5 p-4">
+                <div class="right-content h-100 p-4">
+                    <h2>Right Container</h2>
+                </div>
+            </div>
+        </div>
+    </div>
+<script>
+
 //vue
 const { createApp } = Vue;
 createApp({
@@ -25,17 +78,7 @@ createApp({
 }).mount('#app');
         </script>
 
-<div class = "navLinks">
-<ul>
-    <li><a href="#">Queue Display</a></li>
-</ul>
-<ul>
-    <li><a href="#">Encode</a></li>
-</ul>
-<ul>
-    <li><a href="#">User Management</a></li>
-</ul>
-    </div>
+
 </body>
 
     
