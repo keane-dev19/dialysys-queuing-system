@@ -31,8 +31,19 @@
         }
         .left-content h2, .right-content h2 {
             font-size: 1.5rem;
-            margin-top: 0;
-            
+            margin-top: 0;    
+        }
+       .button-container {
+            display: flex;
+            justify-content: center;
+            gap: 10px;
+            margin-top: 5vh;
+        }
+        
+        .btn {
+            padding: 5px 50px;
+            background-color: #0077BE;
+            border-radius: 15px;
         }
     </style>
 </head>
@@ -43,13 +54,11 @@
 
         <h1> {{queueName}} </h1>
 
-<!-- Navigation Links -->
-    <div class="navLinks">
-        <ul class="nav nav-pills justify-content-center">
-            <li class="nav-item"><a class="nav-link mx-3" href="#">Queue Display</a></li>
-            <li class="nav-item"><a class="nav-link mx-3" href="#">Encode</a></li>
-            <li class="nav-item"><a class="nav-link mx-3" href="#">User Management</a></li>
-        </ul>
+<!-- Navigation Buttons -->
+    <div class="button-container" role="group" aria-label="Button Group">
+        <button type="button" class="btn">Queue Display</button>
+        <button type="button" class="btn">Encode</button>
+        <button type="button" class="btn">User Management</button>
     </div>
 
     <div class="container-fluid min-vh-100 d-flex flex-column">
@@ -58,13 +67,11 @@
 
             <div class="col-md-7 p-4">
                 <div class="left-content h-100 p-4">
-                    <h2>Left Container</h2>
                 </div>
             </div>
 
             <div class="col-md-5 p-4">
                 <div class="right-content h-100 p-4">
-                    <h2>Right Container</h2>
                 </div>
             </div>
         </div>
