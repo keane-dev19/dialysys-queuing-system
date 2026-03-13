@@ -30,26 +30,28 @@
             font-weight: 300;
         }
         .left-content h2, .right-content h2 {
-            font-size: 1.5rem;
+            font-size: 1;
             margin-top: 0;    
         }
        .button-container {
             display: flex;
             justify-content: center;
-            gap: 10px;
-            margin-top: 5vh;
+       }   
+        .button-container button {
+        font-size: 16px;
+        margin: 2px ;
+        cursor: pointer;
+        border-radius: 15px;
         }
-        
         .btn {
             padding: 5px 50px;
             background-color: #0077BE;
-            border-radius: 15px;
         }
     </style>
 </head>
 
-<body>
-    
+<body scroll="no" style="overflow: hidden">
+
     <div id="app">
 
         <h1> {{queueName}} </h1>
@@ -61,21 +63,23 @@
         <button type="button" class="btn">User Management</button>
     </div>
 
-    <div class="container-fluid min-vh-100 d-flex flex-column">
-
+    <div class="left container min-vh-100 d-flex flex-column">
         <div class="row flex-grow-1">
-
             <div class="col-md-7 p-4">
-                <div class="left-content h-100 p-4">
+                <div class="left-content p-4">
                 </div>
             </div>
 
-            <div class="col-md-5 p-4">
-                <div class="right-content h-100 p-4">
+   <div class="right container min-vh-100 d-flex flex-column">
+        <div class="row flex-grow-1">
+            <div class="col-md-7 p-4">
+                <div class="right-content p-4">
                 </div>
             </div>
         </div>
     </div>
+</div>
+</div>
 <script>
 
 //VUE
