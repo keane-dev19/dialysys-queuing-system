@@ -1,196 +1,235 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=2.0">
-    <title>Viewer Page</title>
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-sRIl4kxILFvY47J16cr9ZwB07vP4J8+LH7qKQnuqkuIAvNWLzeN8tE5YBujZqJLB" crossorigin="anonymous">
-    <script src="https://unpkg.com/vue@3/dist/vue.global.js"></script>
-    <script src="https://unpkg.com/motion-v@2.0.0/dist/motion-v.umd.js"></script>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Viewer Page</title>
 
-</head>
+<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/css/bootstrap.min.css" rel="stylesheet">
+<script src="https://unpkg.com/vue@3/dist/vue.global.js"></script>
+<script src="https://unpkg.com/motion-v@2.0.0/dist/motion-v.umd.js"></script>
 
-<!--Styles-->
 <style>
-    #app {
-        display: flex;
-        justify-content: space-between;
-        height: 98vh;
-    }
-    .left-content {
-        background-color: #0077BE;
-        font-weight: 100;
-        color: white;
-        justify-content: center;   
-    }
-    .bottom-left-content {
-        background-color: #0077BE;
-        font-weight: 100;
-        color: white;
-        font-size: small;
-    }
-    .bottom-right-content {
-        background-color: #0077BE;  
-        flex-wrap: wrap;
-        font-weight: 100;
-        color: white;
+
+    html,body   {
+        height:100%;
+        margin:0;
+        overflow:hidden;
+        font-family:'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
 
     }
-    .flashcard {
-        background-color: white;
-        color: black;
-        border-radius: 10px;
-        padding: 1rem;
-        text-align: center;
-        margin-top: 1rem;
-        padding-left: 1;
+
+    #app    {
+        height:100vh;
+        display:flex;
+        flex-direction:column;
     }
-    .staff-name {
-        font-size: 1.2rem;
-        font-weight: bold;
+
+    .container-fluid    {
+        padding:0;
     }
-    .form-control {
-        border-radius: 15px;
-        margin-bottom: 5px;
-        color: white;
+
+    .row    {
+        --bs-gutter-x:0;
+        --bs-gutter-y:0;
+        margin:0;
     }
-    .horizontal-list {
+
+    [class*="col"]  {
+        padding:0;
+    }
+
+    .top-row    {
+        flex:1;
+    }
+
+    .bottom-row {
+        height:30vh;
+    }
+
+    .left-content,
+    .bottom-left-content,
+    .bottom-right-content   {
+        background:#0077BE;
+        color:white;
+        height: 100%;
+    }
+
+    .right-content  {
+        background:black;
+        height: 100%;
+    }
+
+    /* VIDEO PLAYER */
+
+    video   {
+        width: 200%;
+        height: 100%;
+        object-fit:cover;
+    }
+
+    .horizontal-list    {
         display: flex;
-        flex-wrap: wrap;        
-        gap: 1rem;
-        list-style: none;
-        padding: 0;
+        flex-wrap: wrap;
+        gap:.5rem;
+        list-style:none;
+        padding:0;
         margin: 0;
     }
+
     .horizontal-list li {
-        background-color: white;
-        color: black;
-        text-align: center;
-        border-radius: 15px;
-        flex: 0 0 calc(33.333% - 1rem); /* three items per row */
+        background:white;
+        color:black;
+        border-radius:10px;
+        padding:.4rem .6rem;
+        flex:0 0 calc(33.333% - .5rem);
+        text-align:center;
     }
 
+    /* FLASHCARD */
+
+    .flashcard  {
+        background:white;
+        color:black;
+        border-radius:10px;
+        padding:1rem;
+        text-align:center;
+
+        width:350px;
+
+        display:flex;
+        flex-direction:column;
+        justify-content:center;
+        align-items:center;
+    }
+
+    .staff-name {
+        font-size:1.2rem;
+        font-weight:bold;
+    }
+
+    .form-control   {
+        border-radius:12px;
+        margin-bottom:4px;
+    }
 </style>
-<body scroll="no" style="overflow: hidden">
+</head>
 
-<!--Containers-->
+<body>
 
-    <div id="app" class="min-vh-100 d-flex flex-column">
-        <div class="row first-row">
-            <div class="col-md-3 mt-5 p-6">
-                <div class="left-content h-100 p-4">
-                    <h3>{{ queueName }}</h3>
-                    <div class="Date">
-                        <span class="day-of-week">Monday</span>
+<div id="app">
+    <div class="container-fluid top-row">
+        <div class="row h-100">
+        <div class="col-md-3">
+    <div class="left-content p-3 d-flex flex-column">
 
-                        <time datetime="2026-06-01">June 1, 2026</time>
+<h3>{{ queueName }}</h3>
 
-                        <span class="real-time">12:00 PM</span>   
-                    </div>
-                        <h5>On Going Treatment</h5>
-                        <form>
-                        <div class="mb-5 list-group justified-content-center">
-                            <input type="text" class="form-control" placeholder="Patient Name" disabled>
-                            <input type="text" class="form-control" placeholder="Patient Name" disabled>
-                            <input type="text" class="form-control" placeholder="Patient Name" disabled>
-                            <input type="text" class="form-control" placeholder="Patient Name" disabled>
-                            <input type="text" class="form-control" placeholder="Patient Name" disabled>
-                            <input type="text" class="form-control" placeholder="Patient Name" disabled>
-                            <input type="text" class="form-control" placeholder="Patient Name" disabled>
-                        </div>
-                        </form>
-                    </div>
-                </div>
+    <div>
+        <span>Monday</span><br>
+        <time>June 1, 2026</time><br>
+        <span>12:00 PM</span>
+    </div>
 
-        <!--Video-->
-            <div class="col-md-7 p-4">
-                <div class="right-content h-100 p-2 mt-4">
-                    <video id="video" width="985" height="465" controls>
-                        <p>Your browser does not support the video tag.</p>
-                        <source src="" type="video/mp4"/>
-                    </video>
-                </div>
-            </div>
-        </div>
+<h5 class="mt-3">On Going Treatment</h5>
 
-        <!-- bottom row -->
-        <div class="row">
-            <div class="col-md-8 mb-5 p-6">
-                <div class="bottom-left-content h-100 p-4 d-flex align-items-center justify-content-between">
-                    <div class="shift-info">
-                        <h3>Next Shift</h3>
-                        <time>10:00 PM - 10:30 AM</time>
-                        <p>cutoff time</p>
-                    </div>
-                    <ul class="horizontal-list">
-                        <li>Patient 1</li>
-                        <li>Patient 2</li>
-                        <li>Patient 3</li>
-                        <li>Patient 4</li>
-                        <li>Patient 5</li>
-                        <li>Patient 6</li>
-                        <li>Patient 7</li>
-                        <li>Patient 8</li>
-                        <li>Patient 9</li>
-                    </ul>
-                </div>
-            </div>
-            <div class="col-md-4 mb-5 p-6">
-                <div class="container-fluid bottom-right-content h-100 p-3">
-                    <div class="flashcard">
-                        <p>On Duty:</p>
-                        <motion
-                            is="div"
-                            class="staff-name"
-                            :initial="{ opacity: 1 }"
-                            :animate="{ opacity: 1, scale: 1 }"
-                            :transition="{ type: 'spring', stiffness: 50 }"
-                            :key="currentStaffIndex"> {{ currentStaff }} 
-                        </motion>
-                    </div>
-                </div>
-            </div>
+        <div class="flex-grow-1">
+            <input class="form-control" placeholder="Patient Name" disabled>
+            <input class="form-control" placeholder="Patient Name" disabled>
+            <input class="form-control" placeholder="Patient Name" disabled>
+            <input class="form-control" placeholder="Patient Name" disabled>
+            <input class="form-control" placeholder="Patient Name" disabled>
+            <input class="form-control" placeholder="Patient Name" disabled>
+            <input class="form-control" placeholder="Patient Name" disabled>
         </div>
     </div>
+</div>
+
+    <div class="col-md-9">
+        <div class="right-content">
+            <video controls>
+                <source src="" type="video/mp4">
+            </video>
+        </div>
+    </div>
+</div>
+</div>
+
+<div class="container-fluid bottom-row">
+    <div class="row h-100">
+    <div class="col-md-8">
+    <div class="bottom-left-content p-3 d-flex justify-content-between align-items-center">
+
+    <div>
+        <h4>Next Shift</h4>
+            <time>10:00 PM - 10:30 AM</time>
+                <p>Cutoff Time</p>
+    </div>
+
+        <ul class="horizontal-list">
+            <li>Patient 1</li>
+            <li>Patient 2</li>
+            <li>Patient 3</li>
+            <li>Patient 4</li>
+            <li>Patient 5</li>
+            <li>Patient 6</li>
+            <li>Patient 7</li>
+            <li>Patient 8</li>
+            <li>Patient 9</li>
+        </ul>
+    </div>
+</div>
+
+<div class="col-md-4">
+<div class="bottom-right-content d-flex align-items-center justify-content-center">
+
+    <div class="flashcard">
+        <p>On Duty:</p>
+            <motion is="div" class="staff-name" :key="currentStaffIndex">
+                {{ currentStaff }}
+
+            </motion>
+
+    </div>
+
+</div>
+</div>
+
+</div>
+</div>
+
+</div>
 
 </body>
 
 <script>
-//VUE
 const { createApp } = Vue;
 const motion = window.motion;
+
 createApp({
-    data() {
-        return {
-            queueName: "AK Dialysis Center",
-            staff: ["Dr. John Doe", "Nurse Melly", "Tech. Nick", "Dr. Niel", "Nurse Ery Rhymes"],
-            currentStaffIndex: 0,
-            isPaused: false
-        }
-    },
-    computed: {
-        currentStaff() {
-            return this.staff[this.currentStaffIndex];
-        }
-    },
-    methods: {
-        togglePause() {
-            this.isPaused = !this.isPaused;
-        }
-    },
-    mounted() {
-        setInterval(() => {
-            if (!this.isPaused) {
-                this.currentStaffIndex = (this.currentStaffIndex + 1) % this.staff.length;
-            }
-        }, 2000); // change every 2 seconds
+data(){
+return{
+    queueName:"AK Dialysis Center",
+        staff:["Dr. John Doe","Nurse Melly","Tech. Nick","Dr. Niel","Nurse Ery Rhymes"],
+    currentStaffIndex:0,
+    isPaused:false
     }
+},
 
-}).use(motion).mount('#app');
+computed:{
+    currentStaff(){
+        return this.staff[this.currentStaffIndex]
+    }
+},
 
+mounted(){
+    setInterval(()=>{
+        if(!this.isPaused){
+        this.currentStaffIndex=(this.currentStaffIndex+1)%this.staff.length
+         }
+    },2000)
+}
 
-
-</script>
-
-</html>
-
+    }).use(motion).mount('#app');
+    </script>
+    </html>
