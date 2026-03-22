@@ -12,17 +12,22 @@
 <style>
 body { font-family:'Segoe UI'; }
 
+/* HEADER */
 .header-bar {
     padding:20px 30px;
 }
 
+/* ✅ UPDATED VIEWER CONTAINER */
 .left-content {
     background:#535353;
-    height:500px;
-    border-radius:20px; /* ✅ required */
+    height:75vh;          /* responsive height */
+    max-height:900px;     /* cap for large screens */
+    min-height:600px;     /* prevents small display */
+    border-radius:20px;
     overflow:hidden;
 }
 
+/* BUTTONS */
 .btn {
     background:#0077BE;
     color:white;
@@ -34,6 +39,7 @@ body { font-family:'Segoe UI'; }
     text-align:center;
 }
 
+/* PANEL */
 .panel {
     position:fixed;
     top:80px;
@@ -44,6 +50,7 @@ body { font-family:'Segoe UI'; }
     border-radius:10px;
 }
 
+/* PROFILE */
 .profile-icon img {
     cursor:pointer;
 }
@@ -58,7 +65,7 @@ body { font-family:'Segoe UI'; }
 
     <h2>AK Dialysis Center</h2>
 
-    <!-- ✅ PROFILE DROPDOWN -->
+    <!-- PROFILE DROPDOWN -->
     <div class="dropdown profile-icon">
         <button class="btn p-0 border-0" data-bs-toggle="dropdown">
             <i class="bi bi-person-circle" style="font-size:28px;"></i>
